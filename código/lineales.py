@@ -87,5 +87,64 @@ class ListaEnlazada:
             cadena += '---->'
             actual = actual.siguiente
         cadena += 'None'
-        
         return cadena
+    
+##------------ Lista simple Circular ------------
+class listaCircular():
+    class Nodo ():
+        def __init__(self, dato):
+            self.dato = dato
+            self.siguiente = None
+    
+    def _init_(self):
+        self.primero = None
+        self.ultimo = None
+
+    def AgregarInicio(self, dato):
+        if self.esVacio():
+            self.primero = self.ultimo = self.Nodo(dato)
+            self.ultimo.siguiente = self.primero
+        else:
+            auxiliar = self.Nodo(dato)
+            auxiliar.siguiente = self.primero
+            self.primero = auxiliar
+            self.ultimo.siguiente = self.primero
+
+    def AgregarFinal(self, dato):
+        if self.esVacio():
+            self.primero = self.ultimo = self.Nodo(dato)
+            self.ultimo.siguiente = self.primero
+        else:
+            auxiliar = self.ultimo
+            self.ultimo = auxiliar.siguiente = self.Nodo(dato)
+            self.ultimo.siguiente = self.primero  
+
+# eliminar el inicio
+# eliminar el final
+# agregar despues
+# agregar antes
+
+
+##------------ Lista Doble Enlazada ------------
+class ListaDoble():
+    class Nodo:
+        def _init_(self, dato):
+            self.anterior = None
+            self.dato = dato
+            self.siguiente = None
+    
+    def _init_(self):
+        self.primero = None
+        self.ultimo = None
+    
+
+##------------ Lista Doble Circular ------------
+class ListaDobleCircular:
+    class Nodo:
+        def _init_(self, dato):
+            self.anterior = None
+            self.siguiente = None
+    
+    def _init_(self):
+        self.primero = None
+        self.ultimo = None
