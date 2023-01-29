@@ -87,5 +87,176 @@ class ListaEnlazada:
             cadena += '---->'
             actual = actual.siguiente
         cadena += 'None'
-        
         return cadena
+    
+##------------ Lista simple Circular ------------
+class listaCircular():
+    class Nodo ():
+        def __init__(self, dato):
+            self.dato = dato
+            self.siguiente = None
+    
+    def _init_(self):
+        self.primero = None
+        self.ultimo = None
+        
+    def esVacio(self):
+        return self.primero == None
+    
+    def AgregarInicio(self, dato):
+        if self.esVacio():
+            self.primero = self.ultimo = self.Nodo(dato)
+            self.ultimo.siguiente = self.primero
+        else:
+            auxiliar = self.Nodo(dato)
+            auxiliar.siguiente = self.primero
+            self.primero = auxiliar
+            self.ultimo.siguiente = self.primero
+
+    def AgregarFinal(self, dato):
+        if self.esVacio():
+            self.primero = self.ultimo = self.Nodo(dato)
+            self.ultimo.siguiente = self.primero
+        else:
+            auxiliar = self.ultimo
+            self.ultimo = auxiliar.siguiente = self.Nodo(dato)
+            self.ultimo.siguiente = self.primero
+      
+    def EliminarInicio(self, dato):
+        if self.esVacio():
+            print ('Vacio')
+        
+        elif self.primero == self.ultimo:
+            self.primero = self.ultimo = None
+        
+        else:
+            self.primero = self.primero.siguiente
+    
+    def EliminarFinal(self):
+        if self.esVacio():
+            print('Vacio')
+        elif self.primero == self.ultimo:
+            self.primero = self.ultimo = None
+        else:
+            auxiliar = self.primero
+            while auxiliar.siguiente != self.ultimo:
+                auxiliar = auxiliar.siguiente
+            auxiliar.siguiente = self.primero
+            self.ultimo = auxiliar
+            
+    def agregarDespues(self, dato, valor):
+        nodo = self.Nodo(valor)
+        auxiliar = self.primero
+        while auxiliar.dato != dato:
+            auxiliar = auxiliar.siguiente
+        nodo.siguiente = auxiliar.siguiente
+        auxiliar.siguiente = nodo
+        
+    def agregarAntes (self, dato, valor):
+        nodo = self.Nodo(valor)
+        auxiliar = self.primero
+        auxiliar2 = self.primero
+        while auxiliar2.dato != dato:
+            auxiliar2 = auxiliar
+            auxiliar = auxiliar.siguiente
+
+    def Recorrer(self):
+        cadena = ""
+        auxiliar = self.primero
+        while auxiliar:
+            cadena += str(auxiliar.dato)
+            cadena += '--->'
+            auxiliar = auxiliar.siguiente
+            if auxiliar == self.primero:
+                cadena += str(auxiliar.dato)
+                break
+            return cadena
+            
+##------------ Lista Doble Enlazada ------------
+class ListaDoble():
+    class Nodo:
+        def _init_(self, dato):
+            self.anterior = None
+            self.dato = dato
+            self.siguiente = None
+    
+    def _init_(self):
+        self.primero = None
+        self.ultimo = None
+    
+    def esVacia(self):
+        if self.primero is None:
+            return True
+        return False
+
+    def agregarFinal(self, elemento):
+        nodo = self.Nodo(elemento)
+
+        if self.esVacia():
+
+            self.primero = self.ultimo = nodo
+            self.primero.anterior = None
+            self.ultimo.siguiente = None
+            
+        else:
+            nodo.anterior = self.ultimo
+            nodo.siguiente = None
+            self.ultimo.siguiente = nodo
+            self.ultimo = nodo
+
+    def agregarInicio(self, elemento):
+        nodo = self.Nodo(elemento)
+
+        if self.esVacia():
+            self.agregarFinal(elemento)
+        
+        else:
+            nodo.siguiente = self.primero
+            nodo.anterior = None
+            self.primero = nodo
+        
+    def eliminarInicio(self):
+        if self.esVacia():
+            return False
+
+        elif self.primero == self.ultimo:
+            self.primero = self.ultimo = None
+
+        else:
+            self.primero = self.primero.siguiente
+            self.primero.anterior = None 
+
+    def eliminarFinal(self):
+        if self.esVacia():
+            return False
+        
+        elif self.primero == self.ultimo:
+            self.primero = self.ultimo = None
+
+        else:
+            self.ultimo = self.ultimo.anterior
+            self.ultimo.siguiente = None
+
+    def str(self):
+
+        actual = self.primero
+        cadena = ''
+
+        while actual is not None:
+            cadena += str(actual.dato) + '  ⇄  '
+            actual = actual.siguiente
+        
+        cadena += 'None'
+
+        return cadena
+
+##------------ Lista Doble Circular ------------
+class ListaDobleCircular:
+    class Nodo:
+        def _init_(self, dato):
+            self.anterior = None
+            self.siguiente = None
+    
+    def _init_(self):
+        self.primero = None
+        self.ultimo = None
