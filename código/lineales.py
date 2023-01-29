@@ -184,6 +184,71 @@ class ListaDoble():
         self.primero = None
         self.ultimo = None
     
+    def esVacia(self):
+        if self.primero is None:
+            return True
+        return False
+
+    def agregarFinal(self, elemento):
+        nodo = self.Nodo(elemento)
+
+        if self.esVacia():
+
+            self.primero = self.ultimo = nodo
+            self.primero.anterior = None
+            self.ultimo.siguiente = None
+            
+        else:
+            nodo.anterior = self.ultimo
+            nodo.siguiente = None
+            self.ultimo.siguiente = nodo
+            self.ultimo = nodo
+
+    def agregarInicio(self, elemento):
+        nodo = self.Nodo(elemento)
+
+        if self.esVacia():
+            self.agregarFinal(elemento)
+        
+        else:
+            nodo.siguiente = self.primero
+            nodo.anterior = None
+            self.primero = nodo
+        
+    def eliminarInicio(self):
+        if self.esVacia():
+            return False
+
+        elif self.primero == self.ultimo:
+            self.primero = self.ultimo = None
+
+        else:
+            self.primero = self.primero.siguiente
+            self.primero.anterior = None 
+
+    def eliminarFinal(self):
+        if self.esVacia():
+            return False
+        
+        elif self.primero == self.ultimo:
+            self.primero = self.ultimo = None
+
+        else:
+            self.ultimo = self.ultimo.anterior
+            self.ultimo.siguiente = None
+
+    def str(self):
+
+        actual = self.primero
+        cadena = ''
+
+        while actual is not None:
+            cadena += str(actual.dato) + '  ⇄  '
+            actual = actual.siguiente
+        
+        cadena += 'None'
+
+        return cadena
 
 ##------------ Lista Doble Circular ------------
 class ListaDobleCircular:
