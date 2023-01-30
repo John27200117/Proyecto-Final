@@ -1,4 +1,3 @@
-print("Inicio del proyecto final")
 from lineales import *
 import numpy as np
 #------------ Inicializando ------------
