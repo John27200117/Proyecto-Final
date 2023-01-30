@@ -1,4 +1,5 @@
 from lineales import *
+from noLineales import *
 import numpy as np
 #------------ Inicializando ------------
 conjunto = set()
