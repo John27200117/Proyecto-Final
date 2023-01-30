@@ -337,7 +337,27 @@ class Pila:
     def __init__(self):
         self.cima == None
             
-    #...
+    def apilar(self, dato):
+        if self.cima == None:
+            self.cima = self.Nodo(dato)
+            return
+        nuevo_nodo = self.Nodo(dato)
+        nuevo_nodo.siguiente = self.cima
+        self.cima = nuevo_nodo
+
+    def desapilar(self):
+        if self.cima == None:
+            return
+        self.cima = self.cima.siguiente
+
+    def imprimir(self):
+        elemento = ""
+        nodo_temporal = self.cima
+        elementos = []
+        while nodo_temporal != None:
+            elementos.append(nodo_temporal.dato)
+            nodo_temporal = nodo_temporal.siguiente
+        return elementos
     
 # ------------ Colas -------------
 class cola:
@@ -348,3 +368,32 @@ class cola:
     def __init__(self):
         self.cabeza = None
         self.cantidad = 0
+
+    def encolar(self, valor):
+        nodo = self.Nodo(valor)
+        if self.cantidad == 0:
+            self.cabeza = nodo
+        else:
+            actual = self.cabeza
+            while actual.siguiente != None: 
+                actual = actual.siguiente
+            actual.siguiente = nodo
+        self.cantidad += 1
+    
+    def desencolar(self):
+        if self.cantidad == 0:
+            return False
+        else:
+            devolver = self.cabeza.dato
+            self.cabeza = self.cabeza.siguiente
+            self.cantidad -= 1
+            return devolver
+
+    def imprimir_cola(self):
+        elementos_cola = []
+        actual = self.cabeza
+        for i in range(self.cantidad):
+            elementos_cola.append(actual.dato)
+            actual = actual.siguiente
+        
+        return elementos_cola
