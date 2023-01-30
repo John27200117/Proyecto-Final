@@ -67,3 +67,31 @@ class Grafo:
         
         return recorrido
         
+    def recorrido_profundidad(self, inicio):
+        if not self.esta_en_vertices(inicio):
+            return None
+
+        recorrido = []
+        pila = [inicio]
+
+        while len(pila) > 0:
+            v_aux = pila.pop()
+
+            if not self.contenido_en(recorrido, v_aux):
+                recorrido.append(v_aux)
+
+            condicion = True
+
+            for i in range(len(self.matriz)):
+                if self.matriz[self.vertices.index(v_aux)][i] is not None:
+                    v_candidato = self.vertices[i]
+
+                    if not self.contenido_en(recorrido, v_candidato) and condicion:
+
+                        condicion = False
+
+                        pila.append(v_aux)
+                        pila.append(v_candidato)
+
+        return recorrido
+        
