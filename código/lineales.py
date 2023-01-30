@@ -1,11 +1,11 @@
 ## ------------ Lista Simple Enlazada --------------
 class ListaEnlazada:
     class Nodo:
-        def _init_(self,dato):
+        def __init__(self,dato):
             self.dato = dato
             self.siguiente = None
         
-    def _init_(self):
+    def __init__(self):
         self.primero = None
         self.tamanio = 0
         
@@ -76,7 +76,7 @@ class ListaEnlazada:
             
         self.tamanio -= 1
         
-    def _len_(self): # Nos muestra la cantidad de datos que hay en la lista
+    def __len__(self): # Nos muestra la cantidad de datos que hay en la lista
         return self.tamanio
     
     def str(self):
@@ -96,7 +96,7 @@ class listaCircular():
             self.dato = dato
             self.siguiente = None
     
-    def _init_(self):
+    def __init__(self):
         self.primero = None
         self.ultimo = None
         
@@ -175,12 +175,12 @@ class listaCircular():
 ##------------ Lista Doble Enlazada ------------
 class ListaDoble():
     class Nodo:
-        def _init_(self, dato):
+        def __init__(self, dato):
             self.anterior = None
             self.dato = dato
             self.siguiente = None
     
-    def _init_(self):
+    def __init__(self):
         self.primero = None
         self.ultimo = None
     
@@ -255,8 +255,96 @@ class ListaDobleCircular:
     class Nodo:
         def _init_(self, dato):
             self.anterior = None
+            self.dato = dato
             self.siguiente = None
-    
-    def _init_(self):
+
+            
+    def __init__(self):
         self.primero = None
         self.ultimo = None
+        
+    def esVacia(self):
+        if self.primero is None:
+            return True
+        return False
+    
+    def agregarFinal(self,elemennto):
+        nodo = self.Nodo(elemennto)
+        
+        if self.esVacia():
+            self.primero = self.ultimo = nodo
+            self.primero .anterior = self.ultimo
+            self.ultimo.siguiente = self.primero
+        
+        else:
+            nodo.anterior = self.ultimo
+            nodo.siguiente = self.primero
+            self.ultimo.siguiente = nodo
+            self.primero = nodo
+        
+    def eliminarInicio (self):
+        if self.esVacia():
+            return False
+        elif self.primero == self.ultimo:
+            self.primero = self.ultimo = None
+        
+        else: 
+            self.ultimo = self.ultimo.anterior
+            self.primero.anterior = self.ultimo
+            self.ultimo.siguiente = self.primero
+    
+    def strInicioFin(self):
+
+        if self.primero  is not None:
+            actual = None
+            cadena = str(self.ultimo.dato) + ' ⇄  '
+
+            while actual is not self.primero:
+                if actual is None:
+                    actual = self.primero
+                cadena += str(actual.dato) + ' ⇄  '
+                actual = actual.siguiente
+            
+            cadena += str(self.primero.dato)
+            return cadena
+
+        return 'None'
+    
+    def strFinInicio(self):
+
+        if self.primero is not None:
+            actual = None
+            cadena = str(self.primero.dato) + ' ⇄  '
+
+            while actual is not self.ultimo:
+                if actual is None:
+                    actual = self.ultimo
+                cadena += str(actual.dato) + ' ⇄  '
+                actual = actual.anterior
+            
+            cadena += str(self.ultimo.dato)
+
+            return cadena
+        
+        return 'None'
+
+# ------------ Pilas ------------
+class Pila:
+    class Nodo:
+        def __init__(self,dato):
+            self.dato = dato
+            self.siguiente = None
+    def __init__(self):
+        self.cima == None
+            
+    #...
+    
+# ------------ Colas -------------
+class cola:
+    class Nodo:
+        def __init__(self,dato):
+            self.dato = dato
+            self.siguiente = None
+    def __init__(self):
+        self.cabeza = None
+        self.cantidad = 0
