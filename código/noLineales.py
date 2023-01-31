@@ -94,4 +94,5 @@ class Grafo:
                         pila.append(v_candidato)
 
         return recorrido
-        
+ # ----------------------------- Arbol ----------------------------------------- 
+ class Arbol:   
