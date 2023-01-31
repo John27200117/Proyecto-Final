@@ -95,4 +95,17 @@ class Grafo:
 
         return recorrido
  # ----------------------------- Arbol ----------------------------------------- 
- class Arbol:   
+ class Arbol:
+     __orden = []
+    __preorden = []
+    __postorden = []
+
+    class Nodo:
+        def __init__(self, dato):
+            self.dato = dato
+            self.izquierda = None
+            self.derecha = None
+
+    def __init__(self):
+        self.raiz = None
+
