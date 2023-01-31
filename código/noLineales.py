@@ -154,3 +154,5 @@ class Arbol:
             return self.__buscar(nodo.derecha, busqueda)
 
     # métodos públicos para el ingreso y salida de datos
+    def agregar(self, dato):
+        self.__agregar(self.raiz, dato)
