@@ -96,6 +96,7 @@ class Grafo:
         return recorrido
  # ----------------------------- Arbol ----------------------------------------- 
 class Arbol:
+
     __orden = []
     __preorden = []
     __postorden = []
@@ -107,8 +108,9 @@ class Arbol:
             self.derecha = None
 
     def __init__(self):
-        self.raiz = None 
-   # métodos privados recursivos para recorrer el árbol
+        self.raiz = None
+
+    # métodos privados recursivos para recorrer el árbol
 
     def __agregar(self, nodo, dato):
         if nodo is None:
@@ -152,7 +154,5 @@ class Arbol:
             return self.__buscar(nodo.izquierda, busqueda)
         else:
             return self.__buscar(nodo.derecha, busqueda)
-
-    # métodos públicos para el ingreso y salida de datos
-    def agregar(self, dato):
-        self.__agregar(self.raiz, dato)
+        
+   # métodos públicos para el ingreso y salida de datos
