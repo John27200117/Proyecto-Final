@@ -18,3 +18,4 @@ numero_cola = 100
 numero_cola_seg = 100
 contador_desencolar = 0
 contador_sim = 0
+#he llegado
