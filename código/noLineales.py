@@ -172,3 +172,7 @@ class Arbol:
     def agregar(self, dato):
         self.__agregar(self.raiz, dato)
 
+    def enOrden(self):
+        self.__orden = []
+        self.__enOrden(self.raiz)
+        return str(self.__orden)
