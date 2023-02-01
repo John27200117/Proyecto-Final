@@ -3,17 +3,22 @@ from collections import deque
 class Grafo:
     def __init__(self):
         self.vertices = []
-        self.matriz = [[None]*0 for i in range (0)]
-        def mostrarMatriz(self):
-            cadena = ""
+        self.matriz = [[None]*0 for i in range(0)]
+
+    def mostrarMatriz(self):
+        cadena = ""
+
+        for c in range(len(self.matriz)):
+            cadena += "\t" + str(self.vertices[c])
             
+        cadena += "\n"
+        
+        for f in range(len(self.matriz)):
+            cadena += str(self.vertices[f]) + " |"
             for c in range(len(self.matriz)):
-                cadena += str(self.vertice[f]) + "|"
-            cadena += "\n"
-            for f in range(len(self.matriz)):
                 cadena += "\t" + str(self.matriz[f][c])
             cadena += "\n"
-            
+
         cadena += "\n"
         return cadena
 
@@ -22,6 +27,12 @@ class Grafo:
         if lista.count(k) == 0:
             return False
         return True
+
+    def esta_en_vertices(self, v):
+        if self.vertices.count(v) == 0:
+            return False
+        return True
+
     def agregarVertice(self, v):
         if self.esta_en_vertices(v):
             return False
@@ -29,19 +40,19 @@ class Grafo:
         self.vertices.append(v)
 
         filas = columnas = len(self.matriz)
-        matriz_aux = [[None] * (filas+1) for i in range(columnas+1) ]
+        matriz_aux = [[None] * (filas+1) for i in range(columnas+1)]
 
         for f in range(filas):
             for c in range(columnas):
                 matriz_aux[f][c] = self.matriz[f][c]
-        
+
         self.matriz = matriz_aux
         return True
-    
+
     def agregarArista(self, inicio, fin, valor, dirijida):
         if not(self.esta_en_vertices(inicio)) or not(self.esta_en_vertices(fin)):
             return False
-        
+
         self.matriz[self.vertices.index(inicio)][self.vertices.index(fin)] = valor
 
         if not dirijida:
@@ -51,7 +62,7 @@ class Grafo:
     def recorrido_anchura(self, inicio):
         if not self.esta_en_vertices(inicio):
             return None
-        
+
         recorrido = []
         cola = deque([inicio])
 
@@ -64,9 +75,9 @@ class Grafo:
                     v_candidato = self.vertices[i]
                     if not self.contenido_en(recorrido, v_candidato) and not self.contenido_en(cola, v_candidato):
                         cola.append(v_candidato)
-        
+
         return recorrido
-        
+
     def recorrido_profundidad(self, inicio):
         if not self.esta_en_vertices(inicio):
             return None
@@ -94,5 +105,55 @@ class Grafo:
                         pila.append(v_candidato)
 
         return recorrido
-# ------------- Arbol ------------
+
+# ----------------------------- Arbol -----------------------------------------
+class Arbol:
+
+    __orden = []
+    __preorden = []
+    __postorden = []
+
+    class Nodo:
+        def __init__(self, dato):
+            self.dato = dato
+            self.izquierda = None
+            self.derecha = None
+
+    def __init__(self):
+        self.raiz = None
+
+    # métodos privados recursivos para recorrer el árbol
+
+    def __agregar(self, nodo, dato):
+        if nodo is None:
+            self.raiz = self.Nodo(dato)
+
+        elif dato < nodo.dato:
+            if nodo.izquierda is None:
+                nodo.izquierda = self.Nodo(dato)
+            else:
+                self.__agregar(nodo.izquierda, dato)
+        else:
+            if nodo.derecha is None:
+                nodo.derecha = self.Nodo(dato)
+            else:
+                self.__agregar(nodo.derecha, dato)
+
+    def __enOrden(self, nodo):
+        if nodo is not None:
+            self.__enOrden(nodo.izquierda)
+            self.__orden.append(nodo.dato)
+            self.__enOrden(nodo.derecha)
+
+    def __preOrden(self, nodo):
+        if nodo is not None:
+            self.__preorden.append(nodo.dato)
+            self.__preOrden(nodo.izquierda)
+            self.__preOrden(nodo.derecha)
+
+    def __postOrden(self, nodo):
+        if nodo is not None:
+            self.__postOrden(nodo.izquierda)
+            self.__postOrden(nodo.derecha)
+            self.__postorden.append(nodo.dato)
 
