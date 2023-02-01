@@ -95,7 +95,7 @@ class Grafo:
 
         return recorrido
  # ----------------------------- Arbol ----------------------------------------- 
-class Arbol:
+ class Arbol:
 
     __orden = []
     __preorden = []
@@ -154,5 +154,3 @@ class Arbol:
             return self.__buscar(nodo.izquierda, busqueda)
         else:
             return self.__buscar(nodo.derecha, busqueda)
-        
-   # métodos públicos para el ingreso y salida de datos
