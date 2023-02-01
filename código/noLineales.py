@@ -96,7 +96,8 @@ class Grafo:
         return recorrido
  # ----------------------------- Arbol ----------------------------------------- 
  class Arbol:
-     __orden = []
+
+    __orden = []
     __preorden = []
     __postorden = []
 
@@ -109,3 +110,47 @@ class Grafo:
     def __init__(self):
         self.raiz = None
 
+    # métodos privados recursivos para recorrer el árbol
+
+    def __agregar(self, nodo, dato):
+        if nodo is None:
+            self.raiz = self.Nodo(dato)
+
+        elif dato < nodo.dato:
+            if nodo.izquierda is None:
+                nodo.izquierda = self.Nodo(dato)
+            else:
+                self.__agregar(nodo.izquierda, dato)
+        else:
+            if nodo.derecha is None:
+                nodo.derecha = self.Nodo(dato)
+            else:
+                self.__agregar(nodo.derecha, dato)
+
+    def __enOrden(self, nodo):
+        if nodo is not None:
+            self.__enOrden(nodo.izquierda)
+            self.__orden.append(nodo.dato)
+            self.__enOrden(nodo.derecha)
+
+    def __preOrden(self, nodo):
+        if nodo is not None:
+            self.__preorden.append(nodo.dato)
+            self.__preOrden(nodo.izquierda)
+            self.__preOrden(nodo.derecha)
+
+    def __postOrden(self, nodo):
+        if nodo is not None:
+            self.__postOrden(nodo.izquierda)
+            self.__postOrden(nodo.derecha)
+            self.__postorden.append(nodo.dato)
+
+    def __buscar(self, nodo, busqueda):
+        if nodo is None:
+            return None
+        if nodo.dato == busqueda:
+            return nodo
+        if busqueda < nodo.dato:
+            return self.__buscar(nodo.izquierda, busqueda)
+        else:
+            return self.__buscar(nodo.derecha, busqueda)
