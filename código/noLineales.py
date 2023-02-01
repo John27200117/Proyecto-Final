@@ -168,3 +168,11 @@ class Arbol:
             return self.__buscar(nodo.derecha, busqueda)
 
     # métodos públicos para el ingreso y salida de datos
+
+    def agregar(self, dato):
+        self.__agregar(self.raiz, dato)
+
+    def enOrden(self):
+        self.__orden = []
+        self.__enOrden(self.raiz)
+        return str(self.__orden)
