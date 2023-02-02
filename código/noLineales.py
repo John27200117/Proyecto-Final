@@ -176,3 +176,4 @@ class Arbol:
         self.__orden = []
         self.__enOrden(self.raiz)
         return str(self.__orden)
+    
