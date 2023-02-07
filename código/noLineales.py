@@ -181,6 +181,11 @@ class Arbol:
         self.__preorden = []
         self.__enPreorden(self.raiz)
         return str(self.__preorden)
+
+    def enPostOrden(self):
+        self.__postorden = []
+        self.__postOrden(self.raiz)
+        return str(self.__postorden)
     
     def buscar(self,busqueda):
-        return self. buscar(self.raiz,busqueda)
+        return self. buscar(self.raiz,busqueda)        
