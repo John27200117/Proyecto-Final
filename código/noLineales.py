@@ -183,4 +183,4 @@ class Arbol:
         return str(self.__preorden)
     
     def buscar(self,busqueda):
-        return self. buscar(self.raiz,busqueda)
+        return self. buscar(self.raiz,busqueda)        
