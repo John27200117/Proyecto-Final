@@ -84,3 +84,16 @@ def panelListaSimple(event):
     ejemplo.pack(side = TOP)
     
     # ------------------- Agregar datos --------------------------------
+
+    lblDato = Message(panel, text = 'Ingrese un elemento: ', bg = '#CFD4EE', width = 200)
+    lblDato.pack(side = LEFT, anchor = N)
+
+    dato = Entry(panel, width = 30, justify = RIGHT)
+    dato.pack(side = LEFT, anchor = N)
+    dato.bind('<Return>', agregar)
+
+    btnAgregar = Button(panel, width = 80, height = 25, text = '  Agregar', bg = '#9C9C9C', border = 0, fg = '#000000', image = imgBtnAgr, compound = 'left', cursor = 'hand2')
+    btnAgregar.place(x = 600, y = 110)
+    btnAgregar.bind('<Button-1>', agregar)
+
+    # ------------------- Agregar datos despues --------------------------------
