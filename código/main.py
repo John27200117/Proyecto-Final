@@ -68,3 +68,19 @@ def panelListaSimple(event):
         lblEjemplo.config(text = texto)
 
     #------------------ Panel --------------------------
+    
+    panel = Frame(ventana, bg = '#CFD4EE', padx = 10 , pady = 10)
+    panel.pack(expand = True, fill = BOTH)
+
+    definicion = 'Es una colección de nodos de elementos enlazados dispuestos unos a continuación de otros en la que cada elemento se enlaza a otro nodo, la idea es tener un conjunto de elementos almacenados es una estructura llamados nodos, en las cuales contienen la dirección de un nodo y el elemento almacenado.'
+
+    contenedor = LabelFrame(panel, text = 'Definición', pady = 10, padx = 5, bg = '#CFD4EE')
+    contenedor.pack(fill = X, side = TOP)
+
+    info = Message(contenedor, text = definicion, bg = '#CFD4EE', aspect = 1000)
+    info.pack(fill = X)
+
+    ejemplo = Message(panel, text = 'Ejemplo:', bg = '#CFD4EE', width = 100)
+    ejemplo.pack(side = TOP)
+    
+    # ------------------- Agregar datos --------------------------------
