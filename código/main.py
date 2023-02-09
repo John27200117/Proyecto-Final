@@ -1,6 +1,17 @@
+from tkinter import *
+from tkinter import ttk
+from tkinter import messagebox
 from lineales import *
 from noLineales import *
 import numpy as np
+
+ventana = Tk()
+ventana.title('Proyecto EDD')
+ventana.geometry("1000x500+150+100")
+
+panel = None
+subMenu = None
+
 #------------ Inicializando ------------
 conjunto = set() # Conjunto
 arreglo = np.array ([]) # arreglo
@@ -8,7 +19,10 @@ miListaEnlazada = [ListaEnlazada] # miListaEnlazada
 milistaCircularSimple = listaCircular() # miListaCircular
 miListaDoble = ListaDoble() #miListaDoble
 miListaDobleCircular = ListaDobleCircular() #miListaDobleCircular
+miArbol = Arbol() # miArbol
+datosArbol = 'Elementos ingresados: ' # datos ingresados al arbol
 miGrafo = Grafo() #miGrafo
+datosCombo = () # datos para combo box
 
 pila = Pila()
 cola = cola()
@@ -18,6 +32,8 @@ numero_cola = 100
 numero_cola_seg = 100
 contador_desencolar = 0
 contador_sim = 0
+
+#---------------------------------------------------------------------------
 
 # ---------------------------------------   Paneles E. D. Lineales ----------------------------------------
 
