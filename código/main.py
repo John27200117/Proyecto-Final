@@ -172,6 +172,92 @@ def panelConjuntos(event):
     lblEjemplo = Message(panel, text = texto, bg = '#CFD4EE', aspect = 1000)
     lblEjemplo.place(x = 0, y = 150)
 
+def panelArray(event):
+    global panel
+    if panel is not None:
+        panel.destroy()
+    #------------------ Panel --------------------------
+
+    panel = Frame(ventana, bg = '#CFD4EE', padx = 10 , pady = 10)
+    panel.pack(expand = True, fill = BOTH)
+
+    definicion = 'El módulo array define una estructura de datos de secuencia que se ve muy parecida a una list, excepto que todos los miembros tienen que ser del mismo tipo primitivo. Los tipos admitidos son todos numéricos u otros tipos primitivos de tamaño fijo como bytes.'
+    contenedor = LabelFrame(panel, text = 'Definición', pady = 10, padx = 5, bg = '#CFD4EE')
+    contenedor.pack(fill = X, side = TOP)
+
+    info = Message(contenedor, text = definicion, bg = '#CFD4EE', aspect = 1000)
+    info.pack(fill = X)
+
+    def nuevo_array():
+        global array_enteros, array_flotantes, array_cadenas, array_booleanos, label_array
+        label_array.destroy()
+        array_enteros = np.array([])
+        array_flotantes = np.array([])
+        array_cadenas = np.array([])
+        array_booleanos = np.array([])
+        label_array = Label(panel, text="[]", bg="#CFD4EE", font=("Cambria", 15))
+        label_array.place(x=295, y=230)
+
+    def crear_array(elemento):
+        global array_enteros, array_flotantes, array_cadenas, array_booleanos, label_array
+        if menu_desplegable.get() == "Enteros":
+            try:
+                array_enteros = np.append(array_enteros, int(elemento), axis=None)
+                label_array.config(text=array_enteros)
+            except:
+                messagebox.showerror("Aviso", "Debes crear un nuevo array")
+
+        elif menu_desplegable.get() == "Flotantes":
+            try:
+                array_flotantes = np.append(array_flotantes, float(elemento), axis=None)
+                label_array.config(text=array_flotantes)
+            except:
+                messagebox.showerror("Aviso", "Debes crear un nuevo array")
+
+        elif menu_desplegable.get() == "Cadenas":
+            try:
+                array_cadenas = np.append(array_cadenas, elemento, axis=None)
+                label_array.config(text=array_cadenas)
+            except:
+                messagebox.showerror("Aviso", "Debes crear un nuevo array")
+
+        elif menu_desplegable.get() == "Booleanos":
+            try:
+                if elemento == "False":
+                    elemento = not(elemento)
+                array_cadenas = np.append(array_cadenas, bool(elemento), axis=None)
+                label_array.config(text=array_cadenas)
+                print(bool(elemento))
+            except:
+                messagebox.showerror("Aviso", "Debes crear un nuevo array")
+
+        else:
+            messagebox.showerror("Aviso", "Debes elegir un tipo de dato")
+
+    global label_array
+    
+    boton_nuevo_array = Button(panel, width = 90, height = 25, bg = '#9C9C9C', border = 0, fg = '#000000', image = nuevo, compound = 'left', cursor = 'hand2', text="Nuevo array", command=nuevo_array)
+    boton_nuevo_array.place(x=525, y=120)
+
+    label_array = Label(panel, text="Tipo de dato:", bg="#CFD4EE")
+    label_array.place(x=50, y=120)
+
+    menu_desplegable = ttk.Combobox(panel, values=["Enteros", "Flotantes", "Cadenas", "Booleanos"])
+    menu_desplegable.place(x=125, y=120)
+    menu_desplegable.insert(0, "Datos")
+
+    label_elemento = Label(panel, text="Elemento:", bg="#CFD4EE")
+    label_elemento.place(x=50, y=155)
+
+    entrada = Entry(panel, relief="ridge", bd=2)
+    entrada.place(x=110, y=155)
+
+    boton = Button(panel, width = 80, height = 25, text = '  Agregar', bg = '#9C9C9C', border = 0, fg = '#000000', image = imgBtnAgr, compound = 'left', cursor = 'hand2', command=lambda: crear_array(entrada.get()))
+    boton.place(x=525, y=155)
+
+    label_array = Label(panel, text="[]", font=("Cambria", 15), bg="#CFD4EE")
+    label_array.place(x=295, y=230)
+
 # ---------------------------------------   Paneles E. D. Lineales ----------------------------------------
 
 def panelListaSimple(event):
