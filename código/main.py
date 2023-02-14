@@ -193,5 +193,5 @@ def panelListaSimple(event):
 
     # ------------------- Agregar datos despues --------------------------------
 
-print("rereree")
+
 
