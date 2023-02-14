@@ -113,3 +113,5 @@ def panelListaSimple(event):
     btnAgregar.bind('<Button-1>', agregar)
 
     # ------------------- Agregar datos despues --------------------------------
+
+print("fsfsfdsfsdf")
