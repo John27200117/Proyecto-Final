@@ -91,6 +91,87 @@ def panelFlotante(event):
     if panel is not None:
         panel.destroy()
 
+    #------------------ Panel --------------------------
+
+    panel = Frame(ventana, bg = '#CFD4EE', padx = 10 , pady = 10)
+    panel.pack(expand = True, fill = BOTH)
+
+    definicion = 'Este tipo de dato se representa en lenguaje de programación como float (flotante). Puede, al igual que el entero, ser positivo o negativo, conteniendo uno o más decimales. La variable float también acepta números en notación científica, en los cuales se coloca una «e» para indicar el valor de la potencia base 10.'
+
+    contenedor = LabelFrame(panel, text = 'Definición', pady = 10, padx = 5, bg = '#CFD4EE')
+    contenedor.pack(fill = X, side = TOP)
+
+    info = Message(contenedor, text = definicion, bg = '#CFD4EE', aspect = 1000)
+    info.pack(fill = X)
+
+    ejemplo = Message(panel, text = 'Ejemplo:', bg = '#CFD4EE', width = 100)
+    ejemplo.pack(side = TOP)
+
+    lblEjemplo = Message(panel, text = 'a = 6.765', bg = '#CFD4EE', aspect = 1000)
+    lblEjemplo.pack(side=LEFT, anchor = N)
+
+# ---------------------------------------   Paneles E. E. Compuestos ----------------------------------------
+
+def panelConjuntos(event):
+    global conjunto
+    global panel
+    if panel is not None:
+        panel.destroy()
+
+    texto = 'Conjunto = { '
+    t = 0
+    for i in conjunto:
+        if t == len(conjunto) - 1:
+            texto += str(i)
+        else:
+            texto += str(i) + ', '
+        t += 1
+    texto += ' }'
+
+    def agregar(event):
+        global conjunto
+        elemento = dato.get()
+        conjunto.add(elemento)
+        texto = 'Conjunto = { '
+        t = 0
+        for i in conjunto:
+            if t == len(conjunto) - 1:
+                texto += str(i)
+            else:
+                texto += str(i) + ', '
+            t += 1
+        texto += ' }'
+        lblEjemplo.config(text = texto) 
+
+    #------------------ Panel --------------------------
+
+    panel = Frame(ventana, bg = '#CFD4EE', padx = 10 , pady = 10)
+    panel.pack(expand = True, fill = BOTH)
+
+    definicion = 'Un conjunto es una colección desordenada de valores no repetidos. Los conjuntos de Python son análogos a los conjuntos matemáticos. El tipo de datos que representa a los conjuntos se llama set. El tipo set es mutable: una vez que se ha creado un conjunto, puede ser modificado.'
+    contenedor = LabelFrame(panel, text = 'Definición', pady = 10, padx = 5, bg = '#CFD4EE')
+    contenedor.pack(fill = X, side = TOP)
+
+    info = Message(contenedor, text = definicion, bg = '#CFD4EE', aspect = 1000)
+    info.pack(fill = X)
+
+    ejemplo = Message(panel, text = 'Ejemplo:', bg = '#CFD4EE', width = 100)
+    ejemplo.pack(side = TOP)
+
+    lblDato = Message(panel, text = 'Ingrese un elemento: ', bg = '#CFD4EE', width = 200)
+    lblDato.pack(side = LEFT, anchor = N)
+
+    dato = Entry(panel, width = 30, justify = RIGHT)
+    dato.pack(side = LEFT, anchor = N)
+    dato.bind('<Return>', agregar)
+
+    btnAgregar = Button(panel, width = 80, height = 25, text = '  Agregar', bg = '#9C9C9C', border = 0, fg = '#000000', image = imgBtnAgr, compound = 'left', cursor = 'hand2')
+    btnAgregar.pack(side = RIGHT, anchor = N)
+    btnAgregar.bind('<Button-1>', agregar)
+
+    lblEjemplo = Message(panel, text = texto, bg = '#CFD4EE', aspect = 1000)
+    lblEjemplo.place(x = 0, y = 150)
+
 # ---------------------------------------   Paneles E. D. Lineales ----------------------------------------
 
 def panelListaSimple(event):
